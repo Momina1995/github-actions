@@ -6,13 +6,9 @@ jobs:
      steps:
        - name: checkout actions
          uses: actions/checkout@v4
-         
-       - name: welcome message
-         run: echo "My first action"
-        
-       - name: list the files
-         run: ls
 
-       - name: Read files
-         run: cat README.md
-    
+       - name: welcome message
+         run: | 
+           echo "My first action"
+           ls -lrta
+           cat README.md   
