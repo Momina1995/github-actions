@@ -1,4 +1,4 @@
-name: multi job 
+name: multi job and upload and download artifact
 on: push
 jobs:
   build_job_1:
@@ -10,16 +10,21 @@ jobs:
 
     - name: execute cowsay CMD 
       run: cowsay -f dragon "run for cover" >> dragon.txt
-
-    - name: sleep for 30 sec
-      run: sleep 30
+    
+    - name: Upload build artefact
+      uses: actions/upload-artifact@v3
+      with:
+        name: dragon-file-text
+        path: dragon.txt
 
   test_job_2:
-    needs: build_job_1
+    needs: build_job_1    # needs to avoid running this job in parallelly with build_job_1
     runs-on: ubuntu-latest
     steps: 
-    - name: sleep for 10 secs
-      run: sleep 10
+    - name: download build artifact          
+      uses: actions/download-artifact@v3
+      with:
+        name: dragon-file-text
     
     - name: test file exists
       run: grep -i "dragon" dragon.txt
@@ -28,6 +33,11 @@ jobs:
     needs: [test_job_2, build_job_1]
     runs-on: ubuntu-latest
     steps: 
+    - name: download build artifact
+      uses: actions/download-artifact@v3
+      with:
+        name: dragon-file-text
+
     - name: read file
       run: cat dragon.txt
 
