@@ -11,4 +11,19 @@ jobs:
          run: | 
            echo "My first action"
            ls -lrta
-           cat README.md   
+           cat README.md 
+
+       - name: install cowsay cmd
+         run: sudo apt-get install cowsay -y
+         
+       - name: generate ASCII framework
+         run : cowsay -f dragon " run for cover dragon is here " >>  dragon.txt
+
+       - name: test file exists
+         run: grep -i "dragon" dragon.txt
+
+       - name: Read file 
+         run: cat dragon.txt
+       
+       - name: list repo files
+         run: ls -ltra
