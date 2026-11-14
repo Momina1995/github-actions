@@ -10,7 +10,7 @@
 #           DOCKER_USERNAME: momina
 #           DOCKER_PASSWORD: DOCKER_PASSWORD
 #           IMAGE_NAME: github-actions-nginx
-#         run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ IMAGE_NAME }}:latest
+#         run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
       
 #       - name: Docker login
 #         env: 
@@ -52,7 +52,7 @@
 
 #       steps:
 #       - name: Docker build
-#         run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ IMAGE_NAME }}:latest
+#         run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
 #       - name: Docker login
 #         env: 
 #           DOCKER_PASSWORD: DOCKER_PASSWORD 
@@ -84,7 +84,7 @@ jobs:
       runs-on: ubuntu-latest
       steps:
       - name: Docker build
-        run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ IMAGE_NAME }}:latest
+        run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ env.IMAGE_NAME }}:latest
       - name: Docker login
         env: 
           DOCKER_PASSWORD: DOCKER_PASSWORD 
