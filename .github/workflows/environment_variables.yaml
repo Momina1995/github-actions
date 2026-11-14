@@ -1,0 +1,102 @@
+# name: env variables at job level and workflow level
+# on: push
+# jobs:
+#    docker: 
+#       runs-on: ubuntu-latest
+#       steps:
+#       - name: Docker build
+#         env: 
+#           CONTAINER_REGISTRY: docker.io
+#           DOCKER_USERNAME: momina
+#           DOCKER_PASSWORD: DOCKER_PASSWORD
+#           IMAGE_NAME: github-actions-nginx
+#         run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ IMAGE_NAME }}:latest
+      
+#       - name: Docker login
+#         env: 
+
+#           DOCKER_USERNAME: momina
+#           DOCKER_PASSWORD: DOCKER_PASSWORD
+        
+#         run: echo docker login --username=$DOCKER_USERNAME --password=&DOCKER_PASSWORD
+
+#       - name : Docker publish
+#         env: 
+#           CONTAINER_REGISTRY: docker.io
+#           DOCKER_USERNAME: momina
+#           IMAGE_NAME: github-actions-nginx
+#         run : echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+
+#    deploy:
+#       - name: docker 
+#         runs-on: ubuntu-latest
+#         steps: 
+#         - name: Docker run
+#           env: 
+#             CONTAINER_REGISTRY: docker.io
+#             DOCKER_USERNAME: momina
+#             IMAGE_NAME: github-actions-nginx
+
+#           run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+
+# #########################env variables at job level
+# name: env variables at job level and workflow level
+# on: push
+# jobs:
+#    docker: 
+#       env: 
+#         CONTAINER_REGISTRY: docker.io
+#         DOCKER_USERNAME: momina
+#         IMAGE_NAME: github-actions-nginx   
+#       runs-on: ubuntu-latest
+
+#       steps:
+#       - name: Docker build
+#         run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ IMAGE_NAME }}:latest
+#       - name: Docker login
+#         env: 
+#           DOCKER_PASSWORD: DOCKER_PASSWORD 
+#         run: echo docker login --username=$DOCKER_USERNAME --password=&DOCKER_PASSWORD
+#       - name : Docker publish
+#         run : echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+
+#    deploy:
+#       - name: docker 
+#         env: 
+#           CONTAINER_REGISTRY: docker.io
+#           DOCKER_USERNAME: momina
+#           IMAGE_NAME: github-actions-nginx
+#         runs-on: ubuntu-latest
+#         steps: 
+#         - name: Docker run
+#           run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+
+
+###################env variables at workflow level
+name: env variables at job level and workflow level
+on: push
+env: 
+   CONTAINER_REGISTRY: docker.io
+   DOCKER_USERNAME: subtleactionuser
+   IMAGE_NAME: github-actions-nginx  
+jobs:
+   docker: 
+
+      runs-on: ubuntu-latest
+
+      steps:
+      - name: Docker build
+        run: echo docker build -t ${{ env.CONTAINER_REGISTRY }}/${{ env.DOCKER_USERNAME }}/${{ IMAGE_NAME }}:latest
+      - name: Docker login
+        env: 
+          DOCKER_PASSWORD: DOCKER_PASSWORD 
+        run: echo docker login --username=$DOCKER_USERNAME --password=&DOCKER_PASSWORD
+      - name : Docker publish
+        run : echo docker push $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
+
+   deploy:
+      - name: docker 
+        runs-on: ubuntu-latest
+        steps: 
+        - name: Docker run
+          run: echo docker run -d -p 8080:80 $CONTAINER_REGISTRY/$DOCKER_USERNAME/$IMAGE_NAME:latest
