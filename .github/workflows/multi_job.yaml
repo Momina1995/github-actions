@@ -9,7 +9,7 @@ jobs:
       run: sudo apt-get install cowsay -y
 
     - name: execute cowsay CMD 
-      run: cowsay -f dragon "run for cover" >> dragon.txt
+      run: cowsay -f dragon "run for cover dragon is here" >> dragon.txt
     
     - name: Upload build artefact
       uses: actions/upload-artifact@v7
@@ -24,8 +24,7 @@ jobs:
     - name: download build artifact          
       uses: actions/download-artifact@v6
       with:
-        name: dragon-file-text
-    
+        name: dragon-file-text  
     - name: test file exists
       run: grep -i "dragon" dragon.txt
 
@@ -37,10 +36,7 @@ jobs:
       uses: actions/download-artifact@v6
       with:
         name: dragon-file-text
-
-
     - name: read file
       run: cat dragon.txt
-
     - name: deploy
       run: echo "Deploying......"
