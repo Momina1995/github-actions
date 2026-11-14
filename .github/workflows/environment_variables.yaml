@@ -74,7 +74,7 @@
 
 ###################env variables at workflow level
 name: env variables at job level and workflow level
-on: push
+on: workflow_dispatch
 env: 
    CONTAINER_REGISTRY: docker.io
    DOCKER_USERNAME: subtleactionuser
