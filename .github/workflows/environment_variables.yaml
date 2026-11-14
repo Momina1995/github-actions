@@ -74,7 +74,8 @@
 
 ###################env variables at workflow level
 name: env variables at job level and workflow level
-on: workflow_dispatch
+on: 
+ workflow_dispatch:
 
 env: 
    CONTAINER_REGISTRY: docker.io
